@@ -1,4 +1,4 @@
-#include "datathread.h"
+﻿#include "datathread.h"
 #include <QDebug>
 QList<float> globalxList;
 QList<float> globalyList;
@@ -26,7 +26,7 @@ void DataThread::run()
 
         appendPoint(x,num);
         x=x+10;
-        qDebug() << str;
+//        qDebug() << str;
         QThread::msleep(1000);
     }
 }

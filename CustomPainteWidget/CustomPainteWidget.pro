@@ -18,27 +18,38 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     CustomMenu.cpp \
     LeftPanel.cpp \
+    Loading.cpp \
+    SPushButton.cpp \
+    Waiting.cpp \
     chartpanel.cpp \
     datathread.cpp \
     main.cpp \
     MainWindow.cpp \
+    myAnimationButton.cpp \
     pushbutton.cpp \
     widgetsizeandmove.cpp
 
 HEADERS += \
     CustomMenu.h \
     LeftPanel.h \
+    Loading.h \
     MainWindow.h \
+    SPushButton.h \
+    Waiting.h \
     chartpanel.h \
     datathread.h \
+    myAnimationButton.h \
     pushbutton.h \
     widgetsizeandmove.h
 
 FORMS += \
     CustomMenu.ui \
     LeftPanel.ui \
+    Loading.ui \
     MainWindow.ui \
-    chartpanel.ui
+    Waiting.ui \
+    chartpanel.ui \
+    myAnimationButton.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

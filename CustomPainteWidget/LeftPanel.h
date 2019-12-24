@@ -16,6 +16,9 @@ public:
     ~LeftPanel();
 protected:
     void paintEvent(QPaintEvent *) override;
+private slots:
+    void on_commandLinkButton_clicked();
+
 private:
     Ui::LeftPanel *ui;
 };

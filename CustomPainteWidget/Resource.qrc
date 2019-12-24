@@ -6,5 +6,7 @@
         <file>image/btn_menu.png</file>
         <file>image/btn_minimize.png</file>
         <file>image/logo.png</file>
+        <file>image/loading.gif</file>
+        <file>image/wechat.png</file>
     </qresource>
 </RCC>
