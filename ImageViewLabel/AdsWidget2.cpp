@@ -424,12 +424,12 @@ void AdsWidget2::naveOnClick(int i)
 
 void AdsWidget2::enterEvent(QEvent *event)
 {
-    timer->stop();
+//    timer->stop();
 }
 
 void AdsWidget2::leaveEvent(QEvent *event)
 {
-    timer->start(interval);
+//    timer->start(interval);
 }
 
 void AdsWidget2::changedMax(const QVariant &v)

@@ -1,5 +1,5 @@
-#include "MainWindow.h"
-
+﻿#include "MainWindow.h"
+#include "Win32GetDesktop.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])

@@ -18,17 +18,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     AdsWidget2.cpp \
     ImageViewLabel.cpp \
+    Win32GetDesktop.cpp \
     main.cpp \
     MainWindow.cpp
 
 HEADERS += \
     AdsWidget2.h \
     ImageViewLabel.h \
-    MainWindow.h
+    MainWindow.h \
+    Win32GetDesktop.h
 
 FORMS += \
     AdsWidget2.ui \
-    MainWindow.ui
+    MainWindow.ui \
+    Win32GetDesktop.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -2,13 +2,15 @@
 #include "ui_MainWindow.h"
 #include "ImageViewLabel.h"
 #include "AdsWidget2.h"
+#include "Win32GetDesktop.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
       , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    AdsWidget2 *ads = new AdsWidget2();
+    setWindowFlags(Qt::FramelessWindowHint);//无边框
+    AdsWidget2 *ads = new AdsWidget2;
 //    ImageViewLabel *imagelabel = new ImageViewLabel(this);
 //    imagelabel->setGeometry(10, 10, 510, 208);
 //    //添加自定义图片和文案描述
@@ -23,12 +25,17 @@ MainWindow::MainWindow(QWidget *parent)
 //                       QString::fromLocal8Bit("欢迎扫雨田哥二维码进行打赏！")),
 //    };
 
-//    imagelabel->addImage(imagepairlst);
-    setCentralWidget(ads);
+    //    imagelabel->addImage(imagepairlst);
+        setCentralWidget(ads);
+        /*启用下面代码可以使其变成windows桌面屏保*/
+//       iniworker();
+//       inisystem(this);
+//       ShowOnDesktop(this);
 }
 
 MainWindow::~MainWindow()
 {
+    QuitonDesktop();
     delete ui;
 }
 
