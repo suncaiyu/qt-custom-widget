@@ -5,4 +5,4 @@
 3. suncaiyu/Qt-Auto-Hide-DockWidget 同上，但是还没有本地验过，不评论
 
 
-TODO:让ImageViewLabel成为壁纸后支持鼠标相应：参考https://github.com/Masterlong-Dragon/VideoWallpaper
+让ImageViewLabel成为壁纸后支持鼠标相应：已实现，在suncaiyu/VideoDesktop
