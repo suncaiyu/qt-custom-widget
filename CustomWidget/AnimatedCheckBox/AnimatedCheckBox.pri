@@ -3,3 +3,5 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/AnimatedCheckBox.cpp
+INCLUDEPATH += $$PWD/
+DEPENDPATH  +=$$PWD/

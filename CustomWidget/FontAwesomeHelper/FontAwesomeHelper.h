@@ -4,6 +4,7 @@
 #include <QMap>
 #include <QColor>
 #include <QDebug>
+#include "FontAwesomeShowForm.h"
 
 class FontAwesomeHelper
 {
@@ -15,13 +16,15 @@ public:
     QChar IconUnicode(const QString &iconName);
     QFont GetAwesomeFont() { return mFont; };
     QMap<QString, QString> mIconUnicodeMap;
+    void ShowHelper();
+
 private:
     FontAwesomeHelper();
     FontAwesomeHelper(const FontAwesomeHelper &) = delete;
     FontAwesomeHelper &operator=(const FontAwesomeHelper &) = delete;
     static FontAwesomeHelper *mInstance;
     QFont mFont;
-
+    std::shared_ptr<FontAwesomeShowForm> mShowFontAswsome;
 
     class CGarbo
     {

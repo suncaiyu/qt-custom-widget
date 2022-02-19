@@ -91,3 +91,9 @@ QChar FontAwesomeHelper::IconUnicode(const QString &iconName)
         }
     }
 }
+
+void FontAwesomeHelper::ShowHelper()
+{
+    mShowFontAswsome = std::make_shared<FontAwesomeShowForm>();
+    mShowFontAswsome->show();
+}
