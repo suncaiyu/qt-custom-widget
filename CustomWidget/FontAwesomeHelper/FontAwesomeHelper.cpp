@@ -56,6 +56,7 @@ FontAwesomeHelper::FontAwesomeHelper()
     QString ttfFile = ":/fontawesome-webfont.ttf";
     QString cssFile = ":/font-awesome.css";
     int fontId = QFontDatabase::addApplicationFont(ttfFile);
+    qDebug() << fontId;
     QStringList fontFamily = QFontDatabase::applicationFontFamilies(fontId);
     Q_ASSERT(fontFamily.size() > 0);
     mFont.setFamily(fontFamily.at(0));

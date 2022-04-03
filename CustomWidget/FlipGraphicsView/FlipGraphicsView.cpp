@@ -20,8 +20,8 @@ void FlipGraphicsView::SetWidgets(QWidget *w1, QWidget *w2)
 {
     pw1 = scene()->addWidget(w1);
     pw2 = scene()->addWidget(w2);
-    pw1->setWindowFlags(pw1->windowFlags() | Qt::Window);
-    pw2->setWindowFlags(pw1->windowFlags() | Qt::Window);
+//    pw1->setWindowFlags(pw1->windowFlags() | Qt::Window);
+//    pw2->setWindowFlags(pw1->windowFlags() | Qt::Window);
     pw2->setTransform(QTransform().translate(pw2->boundingRect().width() / 2, pw2->boundingRect().height() / 2)
                       .rotate(-180,Qt::YAxis)
                       .translate(-pw2->boundingRect().width() / 2,-pw2->boundingRect().height() / 2));

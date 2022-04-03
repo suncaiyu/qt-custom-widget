@@ -7,7 +7,7 @@ SOURCES += \
     $$PWD/FontAwesomeShowForm.cpp
 
 RESOURCES += \
-    $$PWD/res.qrc
+    $$PWD/fontawsomnehelper.qrc
 
 INCLUDEPATH += $$PWD/
 DEPENDPATH  +=$$PWD/
