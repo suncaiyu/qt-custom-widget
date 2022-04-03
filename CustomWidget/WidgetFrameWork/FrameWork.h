@@ -1,4 +1,4 @@
-#ifndef FRAMEWORK_H
+﻿#ifndef FRAMEWORK_H
 #define FRAMEWORK_H
 
 #include <QWidget>
@@ -15,6 +15,7 @@ public:
 protected:
     void closeEvent(QCloseEvent *e) override;
     void showEvent(QShowEvent *event) override;
+    void resizeEvent(QResizeEvent *event) override;
 signals:
 
 private:

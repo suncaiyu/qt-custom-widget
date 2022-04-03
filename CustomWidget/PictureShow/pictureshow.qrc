@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Delegate.qml</file>
+        <file>img/1.jpeg</file>
+        <file>img/2.jpeg</file>
+        <file>img/3.jpeg</file>
+        <file>img/4.jpeg</file>
+        <file>img/5.jpeg</file>
+    </qresource>
+</RCC>

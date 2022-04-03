@@ -25,7 +25,9 @@ void RouletteSelectWidget::SetLayerAndCount(int layercount, QList<int> perLayerC
 void RouletteSelectWidget::paintEvent(QPaintEvent *event)
 {
     QPainter p(this);
-    p.setRenderHint(QPainter::Antialiasing,  true);
+    p.setPen(Qt::NoPen);
+    p.setRenderHint(QPainter::Antialiasing,true);
+    p.setRenderHint(QPainter::SmoothPixmapTransform,true);
     DrawLayer(p);
     // 内圆
     DrawInner(p);
@@ -125,7 +127,7 @@ void RouletteSelectWidget::Prepare()
 
 void RouletteSelectWidget::DrawInner(QPainter &p)
 {
-    p.drawPath(mInnerPath);
+    p.fillPath(mInnerPath, Qt::white);
 }
 
 void RouletteSelectWidget::DrawLayer(QPainter &p)
@@ -135,8 +137,9 @@ void RouletteSelectWidget::DrawLayer(QPainter &p)
         QRect circumscribedRectangle(width() / 2 - firstLayerRadius, height() / 2 - firstLayerRadius,
                                                firstLayerRadius * 2, firstLayerRadius * 2);
         p.save();
-//        p.setBrush(Qt::black);
-        p.drawEllipse(circumscribedRectangle);
+        QPainterPath pp;
+        pp.addEllipse(circumscribedRectangle);
+        p.fillPath(pp, QColor(122, 122, 122));
         p.restore();
         for (int i = 0; i < mLayersSelectPath[j].size() ; ++i) {
             p.save();
@@ -146,7 +149,10 @@ void RouletteSelectWidget::DrawLayer(QPainter &p)
             if (mLayersSelectPath[j][i].mHovered) {
                 p.setBrush(Qt::green);
             }
-            p.drawPath(mLayersSelectPath[j].at(i).mPath);
+            QPen pen;
+            pen.setColor(Qt::white);
+            p.setPen(pen);
+            p.drawPath(mLayersSelectPath[j].at(i).mPath/*, QColor(133, 133, 133)*/);
             FontAwesomeHelper *helper = FontAwesomeHelper::GetInstance();
             QString s = helper->mIconUnicodeMap.keys().at(i * j + i);
             QFont font = helper->GetAwesomeFont();

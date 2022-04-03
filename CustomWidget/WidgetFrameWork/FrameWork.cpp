@@ -55,3 +55,11 @@ void FrameWork::showEvent(QShowEvent *event)
     ami2->setDuration(200);
     amiGroup->start();
 }
+
+void FrameWork::resizeEvent(QResizeEvent *event)
+{
+//    mShowSize = event->size();
+    QWidget::resizeEvent(event);
+}
+
+

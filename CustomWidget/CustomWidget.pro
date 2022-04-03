@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui quickwidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -39,3 +39,16 @@ include (./FlipWidget/FlipWidget.pri)
 include (./GuiInvoke/GuiInvoke.pri)
 include (./LambdaThread/LambdaThread.pri)
 include (./RouletteSelectWidget/RouletteSelectWidget.pri)
+include (./ColorManager/ColorManager.pri)
+include (./FlowLayout/FlowLayout.pri)
+include (./PictureShow/PictureShow.pri)
+include (./RoundMmenuInUpperLeftCornerWidget/RoundMmenuInUpperLeftCornerWidget.pri)
+include (./PatternCodeLockWidget/PatternCodeLockWidget.pri)
+include (./IrregularPopupWidget/IrregularPopupWidget.pri)
+include (./ColorGradientRoundedButton/ColorGradientRoundedButton.pri)
+include (./DragSliderVerify/DragSliderVerify.pri)
+include (./PlayStateControl/PlayStateControl.pri)
+include (./ColorfulSlidingRing./ColorfulSlidingRing.pri)
+include (./DiscButton./DiscButton.pri)
+include (./ColorPalette/ColorPalette.pri)
+

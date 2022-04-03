@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>img/mediaDisk.png</file>
+        <file>img/Pole.png</file>
+        <file>img/F4.jpeg</file>
+    </qresource>
+</RCC>
