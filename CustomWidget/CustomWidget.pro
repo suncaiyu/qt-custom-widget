@@ -51,4 +51,4 @@ include (./PlayStateControl/PlayStateControl.pri)
 include (./ColorfulSlidingRing./ColorfulSlidingRing.pri)
 include (./DiscButton./DiscButton.pri)
 include (./ColorPalette/ColorPalette.pri)
-
+include (./Neumorphism/Neumorphism.pri)

@@ -35,6 +35,7 @@ void MainWindow::Init()
     InitFunc13();
     InitFunc14();
     InitFunc15();
+    InitFunc16();
 }
 
 void MainWindow::InitFlowLayout()
@@ -298,4 +299,20 @@ void MainWindow::InitFunc15()
             mShowWidget15->show();
         }
     });
+}
+
+void MainWindow::InitFunc16()
+{
+    mFuncButton16 = std::make_shared<RoundButton>("Neumorphism", this);
+    mFrameWork16 = std::make_shared<FrameWork>(this);
+    mFlowLayout->addWidget(mFuncButton16.get());
+    connect(mFuncButton16.get(), &RoundButton::clicked, this, [=](){
+        if (mFrameWork16->isVisible()) {
+            mFrameWork16->close();
+        } else {
+            mFrameWork16->show();
+        }
+    });
+    mShowWidget16 = std::make_shared<Neumorphism>(mFrameWork16.get());
+    mShowWidget16->setGeometry(0, 0, 300, 300);
 }

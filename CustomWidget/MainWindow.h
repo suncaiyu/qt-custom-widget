@@ -22,6 +22,7 @@
 #include "ColorfulSlidingRing/ColorfulSlidingRing.h"
 #include "DiscButton/DiscButton.h"
 #include "ColorPalette/colorPalette.h"
+#include "../Neumorphism/Neumorphism.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -93,6 +94,10 @@ private:
     std::shared_ptr<RoundButton> mFuncButton15;
     std::shared_ptr<colorPalette> mShowWidget15;
 
+    std::shared_ptr<RoundButton> mFuncButton16;
+    std::shared_ptr<FrameWork> mFrameWork16;
+    std::shared_ptr<Neumorphism> mShowWidget16;
+
     struct SimpleWidget {
         std::shared_ptr<QWidget> w1;
         std::shared_ptr<QWidget> w2;
@@ -120,5 +125,6 @@ private:
     void InitFunc13();
     void InitFunc14();
     void InitFunc15();
+    void InitFunc16();
 };
 #endif // MAINWINDOW_H
