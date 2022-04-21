@@ -313,6 +313,9 @@ void MainWindow::InitFunc16()
             mFrameWork16->show();
         }
     });
+
     mShowWidget16 = std::make_shared<Neumorphism>(mFrameWork16.get());
-    mShowWidget16->setGeometry(0, 0, 300, 300);
+    mShowWidget16->setGeometry(0, 0, 150, 150);
+    mShowWidget16_2 = std::make_shared<InnerWidget>(mFrameWork16.get());
+    mShowWidget16_2->setGeometry(160, 30, 150, 40);
 }

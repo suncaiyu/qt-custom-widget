@@ -23,6 +23,7 @@
 #include "DiscButton/DiscButton.h"
 #include "ColorPalette/colorPalette.h"
 #include "../Neumorphism/Neumorphism.h"
+#include "../Neumorphism/InnerWidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -97,6 +98,7 @@ private:
     std::shared_ptr<RoundButton> mFuncButton16;
     std::shared_ptr<FrameWork> mFrameWork16;
     std::shared_ptr<Neumorphism> mShowWidget16;
+    std::shared_ptr<InnerWidget> mShowWidget16_2;
 
     struct SimpleWidget {
         std::shared_ptr<QWidget> w1;
