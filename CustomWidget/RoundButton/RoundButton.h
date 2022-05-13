@@ -1,6 +1,7 @@
-#ifndef ROUNDBUTTON_H
+﻿#ifndef ROUNDBUTTON_H
 #define ROUNDBUTTON_H
 #include <QPushButton>
+#include <QWidget>
 #include <QGraphicsDropShadowEffect>
 #include <QStyleOptionButton>
 
@@ -16,7 +17,11 @@ protected:
     void paintEvent(QPaintEvent *) override;
     void mousePressEvent(QMouseEvent *e)override;
     void mouseReleaseEvent(QMouseEvent *e)override;
-    void enterEvent(QEvent *e)override;
+#if (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
+    void enterEvent(QEnterEvent *e) override;
+#else
+    void enterEvent(QEvent *e) override;
+#endif
     void leaveEvent(QEvent *e)override;
 
 private:

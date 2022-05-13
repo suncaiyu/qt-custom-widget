@@ -1,4 +1,4 @@
-#include "RoundButton.h"
+﻿#include "RoundButton.h"
 #include <QPainter>
 #include <QDebug>
 
@@ -72,7 +72,15 @@ void RoundButton::mouseReleaseEvent(QMouseEvent *e)
     mOption.state.operator^=(QStyle::State_Selected);
     update();
 }
-
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+void RoundButton::enterEvent(QEnterEvent *e)
+{
+    QPushButton::enterEvent(e);
+    mBackColor = mLighterColor;
+    mOption.state.operator|=(QStyle::State_MouseOver);
+    update();
+}
+#else
 void RoundButton::enterEvent(QEvent *e)
 {
     QPushButton::enterEvent(e);
@@ -80,6 +88,7 @@ void RoundButton::enterEvent(QEvent *e)
     mOption.state.operator|=(QStyle::State_MouseOver);
     update();
 }
+#endif
 
 void RoundButton::leaveEvent(QEvent *e)
 {
