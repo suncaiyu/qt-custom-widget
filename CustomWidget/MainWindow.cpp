@@ -36,6 +36,7 @@ void MainWindow::Init()
     InitFunc14();
     InitFunc15();
     InitFunc16();
+    InitFunc17();
 }
 
 void MainWindow::InitFlowLayout()
@@ -318,4 +319,18 @@ void MainWindow::InitFunc16()
     mShowWidget16->setGeometry(0, 0, 150, 150);
     mShowWidget16_2 = std::make_shared<InnerWidget>(mFrameWork16.get());
     mShowWidget16_2->setGeometry(160, 30, 150, 40);
+}
+
+void MainWindow::InitFunc17()
+{
+    mFuncButton17 = std::make_shared<RoundButton>("Rotating Card", this);
+    mFlowLayout->addWidget(mFuncButton17.get());
+    mShowWidget17 = std::make_shared<RotatingCard>();
+    connect(mFuncButton17.get(), &RoundButton::clicked, this, [=](){
+        if (mShowWidget17->isVisible()) {
+            mShowWidget17->close();
+        } else {
+            mShowWidget17->show();
+        }
+    });
 }

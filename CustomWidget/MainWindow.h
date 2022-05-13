@@ -24,6 +24,7 @@
 #include "ColorPalette/colorPalette.h"
 #include "../Neumorphism/Neumorphism.h"
 #include "../Neumorphism/InnerWidget.h"
+#include "../RotatingCard/RotatingCard.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -100,6 +101,9 @@ private:
     std::shared_ptr<Neumorphism> mShowWidget16;
     std::shared_ptr<InnerWidget> mShowWidget16_2;
 
+    std::shared_ptr<RoundButton> mFuncButton17;
+    std::shared_ptr<RotatingCard> mShowWidget17;
+
     struct SimpleWidget {
         std::shared_ptr<QWidget> w1;
         std::shared_ptr<QWidget> w2;
@@ -128,5 +132,6 @@ private:
     void InitFunc14();
     void InitFunc15();
     void InitFunc16();
+    void InitFunc17();
 };
 #endif // MAINWINDOW_H
