@@ -2,6 +2,7 @@
 #define ROULETTESELECTWIDGET_H
 
 #include <QWidget>
+#include <QPainterPath>
 
 class RouletteSelectWidget : public QWidget
 {
@@ -10,6 +11,7 @@ class RouletteSelectWidget : public QWidget
         QPainterPath mPath;
         bool mHovered = false;
         bool mPressed = false;
+        qreal iconAngle = 0.0f;
     };
 
 public:

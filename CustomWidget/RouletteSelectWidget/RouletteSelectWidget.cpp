@@ -1,6 +1,7 @@
 ﻿#include "RouletteSelectWidget.h"
 #include <QPainter>
 #include <math.h>
+#include <QtMath>
 #include <QMouseEvent>
 #include <QDebug>
 #include <FontAwesomeHelper.h>
@@ -8,6 +9,7 @@
 namespace  {
 constexpr int INNER_RADIUS = 30;
 constexpr int LAYER_RADIUS = 60;
+const qreal PI = qAcos(-1.0f);
 }
 RouletteSelectWidget::RouletteSelectWidget(QWidget *parent) : QWidget(parent)
 {
@@ -29,7 +31,7 @@ void RouletteSelectWidget::paintEvent(QPaintEvent *event)
     p.setRenderHint(QPainter::Antialiasing,true);
     p.setRenderHint(QPainter::SmoothPixmapTransform,true);
     DrawLayer(p);
-    // 内圆
+//    // 内圆
     DrawInner(p);
 }
 
@@ -101,12 +103,12 @@ void RouletteSelectWidget::Prepare()
                                                firstLayerRadius * 2, firstLayerRadius * 2);
         for (int i = 0; i < mLayerAreaCount[j]; ++i) {
             QPainterPath path;
-            // 这里是从160度，等分的，要是不想布局160，可以适当修改
-            int angle = 160 / mLayerAreaCount[j];
+            // 这里是从360度，等分的，要是不想布局360，可以适当修改
+            qreal angle = (qreal)360 / (qreal)mLayerAreaCount[j];
             path.moveTo(width() / 2, height() / 2);
             // arcTo的参数 1， 外接矩形， 2开始角度，以十字坐标系X轴正方向位0， 3，要画多少度
             // 这里从-30度位置开始画
-            path.arcTo(FirstLayerCircumscribedRectangle, i * angle - 30, angle);
+            path.arcTo(FirstLayerCircumscribedRectangle, i * angle, angle);
             path.closeSubpath();
             if (j == 0) {
                 path = path - mInnerPath;
@@ -119,6 +121,7 @@ void RouletteSelectWidget::Prepare()
             }
             MyPath mp;
             mp.mPath = path;
+            mp.iconAngle = i * angle + angle / qreal(2);
             layerSelectedPath.append(mp);
         }
         mLayersSelectPath.append(layerSelectedPath);
@@ -130,10 +133,30 @@ void RouletteSelectWidget::DrawInner(QPainter &p)
     p.fillPath(mInnerPath, Qt::white);
 }
 
+/**
+ * @brief 计算一个点绕着另一个点旋转一定角度后的坐标位置
+ * @param point 要旋转的点（所谓的一个点）
+ * @param ori 被围绕的点(另一个点，原点)
+ * @param angleDegree 角度
+ * @return QPoint 新的坐标
+ **/
+
+QPoint rotatePoint(const QPoint &point, const QPoint &ori,double angleDegree) {
+    double angleRad = qDegreesToRadians(angleDegree);
+
+    int x = (point.x() - ori.x()) * qCos(angleRad) - (point.y() - ori.y()) * qSin(angleRad) + ori.x();
+    int y = (point.x() - ori.x()) * qSin(angleRad) + (point.y() - ori.y()) * qCos(angleRad) + ori.y();
+
+    return QPoint(x, y);
+}
+
 void RouletteSelectWidget::DrawLayer(QPainter &p)
 {
+
     for (int j = mLayerCount - 1; j >= 0; --j) {
         int firstLayerRadius = INNER_RADIUS + (LAYER_RADIUS * (j + 1));
+        int startRadius = firstLayerRadius;
+        int endRadius = firstLayerRadius - LAYER_RADIUS;
         QRect circumscribedRectangle(width() / 2 - firstLayerRadius, height() / 2 - firstLayerRadius,
                                                firstLayerRadius * 2, firstLayerRadius * 2);
         p.save();
@@ -153,13 +176,31 @@ void RouletteSelectWidget::DrawLayer(QPainter &p)
             pen.setColor(Qt::white);
             p.setPen(pen);
             p.drawPath(mLayersSelectPath[j].at(i).mPath/*, QColor(133, 133, 133)*/);
+            p.restore();
+
+
             FontAwesomeHelper *helper = FontAwesomeHelper::GetInstance();
             QString s = helper->mIconUnicodeMap.keys().at(i * j + i);
+            p.save();
             QFont font = helper->GetAwesomeFont();
             font.setPointSize(20);
             p.setFont(font);
-            // 这里的boundingRect可能不准哦，可以自己用其他方式计算一下，图标画在什么位置好
-            p.drawText(mLayersSelectPath[j].at(i).mPath.boundingRect(), Qt::AlignCenter, helper->IconUnicode(s));
+            pen.setColor(Qt::white);
+            p.setPen(pen);
+            // 方法1 ： 这种方式用了rotate，图标也会旋转，步美
+//            QRect lrect(endRadius, - LAYER_RADIUS / 2, LAYER_RADIUS, LAYER_RADIUS);
+//            p.translate(height() / 2, height() / 2);
+//            p.rotate(-mLayersSelectPath[j][i].iconAngle);
+//            p.drawText(lrect, Qt::AlignCenter, helper->IconUnicode(s));
+
+               // 方法2 ： 用三角函数计算旋转后的位置，不用旋转，美
+            QRect lrect(endRadius, - LAYER_RADIUS / 2, LAYER_RADIUS, LAYER_RADIUS);
+            QPoint newP = rotatePoint(lrect.center(), QPoint(0, 0), -mLayersSelectPath[j][i].iconAngle);
+            lrect = QRect(newP.x() - LAYER_RADIUS / 2, newP.y() - LAYER_RADIUS / 2, LAYER_RADIUS, LAYER_RADIUS);
+            p.translate(height() / 2, height() / 2);
+//            p.fillRect(lrect, Qt::black);
+            p.drawText(lrect, Qt::AlignCenter, helper->IconUnicode(s));
+
             p.restore();
         }
     }

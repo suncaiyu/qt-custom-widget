@@ -147,7 +147,7 @@ void MainWindow::InitFunc4()
     });
     mRouletteWidget = std::make_shared<RouletteSelectWidget>(mFrameWork4.get());
     mRouletteWidget->resize(300, 300);
-    mRouletteWidget->SetLayerAndCount(2, QList<int>() << 3 << 4);
+    mRouletteWidget->SetLayerAndCount(2, QList<int>() << 6 << 8);
     mRouletteWidget->move(0, 0);
 }
 

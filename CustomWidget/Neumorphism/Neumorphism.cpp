@@ -1,5 +1,6 @@
 ﻿#include "Neumorphism.h"
 #include <QMouseEvent>
+#include <QPainterPath>
 
 Neumorphism::Neumorphism(QWidget *parent) : QWidget(parent)
 {

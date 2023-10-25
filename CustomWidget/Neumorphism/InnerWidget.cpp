@@ -1,6 +1,7 @@
 ﻿#include "InnerWidget.h"
 #include <QPainter>
 #include <QDebug>
+#include <QPainterPath>
 
 InnerWidget::InnerWidget(QWidget *parent) : QWidget(parent)
 {

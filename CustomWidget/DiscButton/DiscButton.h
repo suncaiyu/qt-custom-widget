@@ -1,7 +1,7 @@
 ﻿#ifndef DISCBUTTON_H
 #define DISCBUTTON_H
 #include <QWidget>
-
+#include <QPainterPath>
 class DiscButton : public QWidget
 {
     Q_OBJECT

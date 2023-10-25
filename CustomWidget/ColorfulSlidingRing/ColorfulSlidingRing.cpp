@@ -2,6 +2,7 @@
 #include <QMouseEvent>
 #include <QPainter>
 #include <math.h>
+#include <QPainterPath>
 
 const auto PI = 3.1415926;
 QPoint getPos(double angle,int radius)//根据角度和半径计算在圆上的位置
