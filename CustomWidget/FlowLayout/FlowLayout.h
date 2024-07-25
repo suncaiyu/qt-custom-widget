@@ -4,6 +4,10 @@
 #include <QLayout>
 #include <QRect>
 #include <QStyle>
+#include <QMap>
+#include <QPoint>
+#include <QLayoutItem>
+
 class FlowLayout : public QLayout
 {
 public:
@@ -29,6 +33,8 @@ private:
     int smartSpacing(QStyle::PixelMetric pm) const;
 
     QList<QLayoutItem *> itemList;
+    mutable QMap<QLayoutItem *, QPoint> mLastGeometryMap;
+    bool isAnimation = true;
     int m_hSpace;
     int m_vSpace;
 };

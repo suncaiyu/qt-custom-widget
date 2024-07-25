@@ -127,9 +127,29 @@ int FlowLayout::doLayout(const QRect &rect, bool testOnly) const
             nextX = x + item->sizeHint().width() + spaceX;
             lineHeight = 0;
         }
-
+        if (!mLastGeometryMap.contains(item)) {
+            mLastGeometryMap.insert(item, QPoint(x, y));
+        }
         if (!testOnly) {
-            item->setGeometry(QRect(QPoint(x, y), item->sizeHint()));
+            if (item->geometry().x() == 0 && item->geometry().y() == 0) {
+                item->setGeometry(QRect(QPoint(x, y), item->sizeHint()));
+            } else if (item->geometry().x() != x || item->geometry().y() != y) {
+                if (isAnimation) {
+                    if (mLastGeometryMap[item] == QPoint(x, y)) {
+                        lineHeight = qMax(lineHeight, item->sizeHint().height());
+                        return y + lineHeight - rect.y() + bottom;
+                    }
+                    QPropertyAnimation *geometryAnimation = new QPropertyAnimation(item->widget(), "geometry");
+                    geometryAnimation->setStartValue(item->widget()->geometry());
+                    geometryAnimation->setEndValue(QRect(QPoint(x,y),item->sizeHint()));
+                    geometryAnimation->setDuration(300);
+                    geometryAnimation->setEasingCurve(QEasingCurve::InOutSine);
+                    geometryAnimation->start(QAbstractAnimation::DeleteWhenStopped);
+                    mLastGeometryMap[item] = QPoint(x, y);
+                } else {
+                    item->setGeometry(QRect(QPoint(x, y), item->sizeHint()));
+                }
+            }
         }
         x = nextX;
         lineHeight = qMax(lineHeight, item->sizeHint().height());
